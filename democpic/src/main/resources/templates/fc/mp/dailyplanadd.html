@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+	
+		<title th:text="${title}">title</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../static/mui/css/mui.min.css" th:href="@{/mui/css/mui.min.css}" />
+		<style type="text/css">
+			.form-label{
+				text-align:justify;
+				text-justify:distribute-all-lines;
+				text-align-last:justify
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">
+				<label th:text="${dailydate}">日期</label>
+			</h1>
+		</header>
+		<div id="plandetails_content" class="mui-content">			
+			<form class="mui-input-group" action="#" th:action="@{dailyplansave}" 
+				th:object="${planDetail}" method="post" >
+			    <div class="mui-input-row">
+			        <label class="form-label">计划主题 </label> 
+			    	<input type="text" th:field="*{subject}" class="mui-input-clear" placeholder="请输入计划主题"/>
+			    </div>
+			    <div class="mui-input-row">
+			        <label class="form-label">时 间 </label>
+			        <input type="text" th:field="*{planDate}" class="mui-input-clear" placeholder="请输入时间"/>
+			    </div>
+			    <div class="mui-input-row">
+			        <label class="form-label">地 点 </label>
+			        <input type="text" th:field="*{place}" class="mui-input-clear" placeholder="请输入地点"/>
+			    </div>
+			    <div class="mui-input-row">
+			        <label class="form-label">计划描述 </label>
+			        <input type="text" th:field="*{details}" class="mui-input-clear" placeholder="请输入计划描述"/>
+			    </div>
+			    <div class="mui-button-row">
+			        <button type="submit" class="mui-btn mui-btn-primary" >确认</button>
+			        <button type="reset" class="mui-btn mui-btn-danger" >取消</button>
+			    </div>
+			</form>
+		</div>
+		
+		<div class="dailyplanadd-div">
+			<a class="mui-icon mui-icon-undo" href="dailyplan"></a>
+		</div>
+		<script src="../../static/mui/js/mui.min.js"	th:src="@{/mui/js/mui.min.js}"></script>
+
+		<script>
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			mui(".mui-title").on('tap','.date-a',function(){
+				 //获取id
+				 var dateparam = this.getAttribute("data-param");
+				 var dailydatelabel = document.getElementById('dailydatelabel').innerHTML;
+				 var param = JSON.stringify({dailydate:dailydatelabel,dateparam:dateparam});
+				 mui.ajax('/democpic/fc/mp/dailyplanevent',{
+						data: param,
+						dataType:'json',//服务器返回json格式数据
+						type:'post',//HTTP请求类型
+						timeout:10000,//超时时间设置为10秒；
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							console.log(data.dailydate);
+							document.getElementById('dailydatelabel').innerHTML=data.dailydate;
+						},
+						error:function(xhr,type,errorThrown){
+							//异常处理；
+							console.log(type);
+						}
+				});
+			})
+		</script>
+	</body>
+
+</html>

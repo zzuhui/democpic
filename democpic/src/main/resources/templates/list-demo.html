@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title th:text="${title}">title</title>	
+
+    <!-- Core CSS - Include with every page -->
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css"
+		th:href="@{/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" href="../static/font-awesome/css/font-awesome.css"
+		th:href="@{/font-awesome/css/font-awesome.css}" />
+
+    <!-- Page-Level Plugin CSS - Dashboard -->
+    <link rel="stylesheet" href="../static/sb_admin/css/plugins/morris/morris-0.4.3.min.css"
+		th:href="@{/sb_admin/css/plugins/morris/morris-0.4.3.min.css}" />
+    <link rel="stylesheet" href="../static/sb_admin/css/plugins/timeline/timeline.css"
+		th:href="@{/sb_admin/css/plugins/timeline/timeline.css}" />
+
+    <!-- SB Admin CSS - Include with every page -->
+    <link rel="stylesheet" href="../static/sb_admin/css/sb-admin.css"
+		th:href="@{/sb_admin/css/sb-admin.css}" />
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+    	<div th:include="fragments/nav :: navbar"></div>
+		
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-8">  
+                    
+                </div>
+                <!-- /.col-lg-8 -->
+                <div class="col-lg-4">
+                                     
+                    
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">  
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                    </span>
+                                </a>                                
+                            </div>
+                            <!-- /.list-group -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->   
+                </div>
+                <!-- /.col-lg-12 -->
+               
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Core Scripts - Include with every page -->
+    <script src="../static/jquery/jquery-1.12.4.js"	th:src="@{/jquery/jquery-1.12.4.js}"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"	th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script src="../static/sb_admin/js/plugins/metisMenu/jquery.metisMenu.js"	th:src="@{/sb_admin/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+    
+   
+    <!-- Page-Level Plugin Scripts - Dashboard -->
+    <script src="../static/sb_admin/js/plugins/morris/raphael-2.1.0.min.js"	th:src="@{/sb_admin/js/plugins/morris/raphael-2.1.0.min.js}"></script>
+    <script src="../static/sb_admin/js/plugins/morris/morris.js"	th:src="@{/sb_admin/js/plugins/morris/morris.js}"></script>
+ 
+    <!-- SB Admin Scripts - Include with every page -->
+    <script src="../static/sb_admin/js/sb-admin.js"	th:src="@{/sb_admin/js/sb-admin.js}"></script>
+    
+    <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
+    <script src="../static/sb_admin/js/demo/dashboard-demo.js"	th:src="@{/sb_admin/js/demo/dashboard-demo.js}"></script>
+
+</body>
+
+</html>

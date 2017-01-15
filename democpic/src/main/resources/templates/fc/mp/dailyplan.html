@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+	
+		<title th:text="${title}">title</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../static/mui/css/mui.min.css" th:href="@{/mui/css/mui.min.css}" />
+	
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+			<h1 class="mui-title">
+				<a class="date-a mui-icon mui-icon-left-nav" data-param="0" ></a>
+				<label id="dailydatelabel" th:text="${dailydate}">日期</label>
+				<a class="date-a mui-icon mui-icon mui-icon-forward"  data-param="1" ></a>
+			</h1>
+		</header>
+		<div id="plandetails_content" class="mui-content">			
+			<ul class="mui-table-view" th:each="plandetail,plandetailStat: ${plandetails}">
+				<div th:with="currenplandate=${plandetails[plandetailStat.index].planDate},
+						beforeplandate=${plandetailStat.index eq 0} ? ${plandetails[0].planDate} : ${plandetails[plandetailStat.index-1].planDate}">
+					<span th:if="${plandetailStat.index eq 0 || 
+				    	not (#dates.format(currenplandate,'yyyy-MM-dd') == #dates.format(beforeplandate,'yyyy-MM-dd'))}" 
+				    	th:text="${#dates.format(currenplandate,'yyyy-MM-dd')}">Julius Caesar</span>
+				</div>
+			    <li class="mui-table-view-cell" >
+			    	<a class="mui-icon mui-icon-paperclip plandetail-editer" th:text="${plandetail.subject}"  
+			    		th:attr="data-plandetailid=${plandetail.id}">Subject</a>
+			    </li>
+			</ul>
+		</div>
+		<div class="dailyplanadd-div">
+			<a class="mui-icon mui-icon-plus plandetail-editer"></a>
+		</div>
+		<script src="../../static/mui/js/mui.min.js" th:src="@{/mui/js/mui.min.js}"></script>
+
+		<script>
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			mui(".mui-title").on('tap','.date-a',function(){
+				 //获取id
+				 var dateparam = this.getAttribute("data-param");
+				 var dailydatelabel = document.getElementById('dailydatelabel').innerHTML;
+				 var param = JSON.stringify({dailydate:dailydatelabel,dateparam:dateparam});
+				 mui.ajax('/democpic/fc/mp/dailyplanevent',{
+						data: param,
+						dataType:'json',//服务器返回json格式数据
+						type:'post',//HTTP请求类型
+						timeout:10000,//超时时间设置为10秒；
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							console.log(data.dailydate);
+							document.getElementById('dailydatelabel').innerHTML=data.dailydate;
+						},
+						error:function(xhr,type,errorThrown){
+							//异常处理；
+							console.log(type);
+						}
+				});
+			})
+			
+			mui("body").on('tap','.plandetail-editer',function(){
+				var plandetailid = this.getAttribute("data-plandetailid");
+				var url = "dailyplanadd?plandetailid=" + plandetailid;
+				mui.openWindow({
+					url:url
+				});
+			})
+		</script>
+	</body>
+
+</html>

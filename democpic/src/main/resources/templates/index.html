@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css"
+		th:href="@{/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" href="../static/fileinput/css/fileinput.min.css"
+		th:href="@{/fileinput/css/fileinput.min.css}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title th:text="${title}">title</title>
+</head>
+<body>
+
+	<section>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#kpModal">
+		  	<span class="glyphicon glyphicon-star"></span> 导入考评人与主题关联
+		</button>
+	</section>
+	<!-- Modal -->
+	<div class="modal fade" id="kpModal" tabindex="-1" role="dialog" aria-labelledby="kpModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">
+	        <span aria-hidden="true">&times;</span>
+	        <span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="kpModalLabel">导入考评人与主题关联</h4>
+	      </div>
+	      <div class="modal-body">
+	       	<form id="fileupdatekpform" enctype="multipart/form-data" >
+               	<input id="fileryzt" class="file" type="file" name="ryztfile" data-min-file-count="1" />
+               </form>
+	      </div>
+	      <div class="modal-footer">
+	       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <button id="importbtn" type="button" class="btn btn-primary">导入</button> -->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<section>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		  	<span class="glyphicon glyphicon-star"></span> 导入考评主题模板
+		</button>
+	</section>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">
+	        <span aria-hidden="true">&times;</span>
+	        <span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel">导入考评主题模板</h4>
+	      </div>
+	      <div class="modal-body">
+	       	<form id="fileupdateform" enctype="multipart/form-data" >
+               	<input id="fileSubject" class="file" type="file" name="subjectfile" data-min-file-count="1" />
+               </form>
+	      </div>
+	      <div class="modal-footer">
+	       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <button id="importbtn" type="button" class="btn btn-primary">导入</button> -->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<section>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pfModal">
+		  	<span class="glyphicon glyphicon-star"></span> 评分
+		</button>
+	</section>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="pfModal" tabindex="-1" role="dialog" aria-labelledby="pfModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">
+	        <span aria-hidden="true">&times;</span>
+	        <span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="pfModalLabel">评分界面</h4>
+	      </div>
+	      <div class="modal-body">
+		       <table class="table table-bordered">
+		  			<caption>主题1</caption>
+					<tr><td>大类1</td><td>大类1子类1</td><td>描述1</td><td>评分</td></tr>
+					<tr><td rowspan="2">大类2</td><td>大类2子类1</td><td>描述2</td><td>评分</td></tr>
+					<tr><td>大类2子类2</td><td>描述3</td><td>评分</td></tr>
+				</table>
+	      </div>
+	      <div class="modal-footer">
+	       <!--  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	        <button id="importbtn" type="button" class="btn btn-primary">导入</button> -->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="../static/jquery/jquery-1.12.4.js"	th:src="@{/jquery/jquery-1.12.4.js}"></script>
+	
+	<!-- fileinput -->
+	<script src="../static/fileinput/js/fileinput.min.js" th:src="@{/fileinput/js/fileinput.min.js}" type="text/javascript"></script>
+    <!-- fileinput 简体中文 -->
+    <script src="../static/fileinput/js/locales/zh.js" th:src="@{/fileinput/js/locales/zh.js}" type="text/javascript"></script>
+
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script	src="../static/bootstrap/js/bootstrap.min.js" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+		
+	<script type="text/javascript">
+			
+		$('#fileSubject').fileinput({
+	        language: 'zh',
+	        uploadUrl: 'kp/uploadSubjectFile',
+	        allowedFileExtensions  : ['xls','xlsx']
+	        
+	    });
+		
+	 	$('#fileSubject').on('fileuploaderror', function(event, data, previewId, index) {
+	        var form = data.form, files = data.files, extra = data.extra,
+	                response = data.response, reader = data.reader;
+	        console.log(data);
+	        console.log('File upload error');
+	    });
+	    $('#fileSubject').on('fileerror', function(event, data) {
+	        console.log(data.id);
+	        console.log(data.index);
+	        console.log(data.file);
+	        console.log(data.reader);
+	        console.log(data.files);
+	    });
+	    $('#fileSubject').on('fileuploaded', function(event, data, previewId, index) {
+	        var form = data.form, files = data.files, extra = data.extra,
+	               response = data.response, reader = data.reader;
+	       alert(response.status +'  '+ response.statusMsg);
+	        console.log('File uploaded triggered');
+	    });
+	    
+	    
+	    $('#fileryzt').fileinput({
+	        language: 'zh',
+	        uploadUrl: 'kp/uploadRyztFile',
+	        allowedFileExtensions  : ['xls','xlsx']
+	        
+	    });
+		
+	 	$('#fileryzt').on('fileuploaderror', function(event, data, previewId, index) {
+	        var form = data.form, files = data.files, extra = data.extra,
+	                response = data.response, reader = data.reader;
+	        console.log(data);
+	        console.log('File upload error');
+	    });
+	    $('#fileryzt').on('fileerror', function(event, data) {
+	        console.log(data.id);
+	        console.log(data.index);
+	        console.log(data.file);
+	        console.log(data.reader);
+	        console.log(data.files);
+	    });
+	    $('#fileryzt').on('fileuploaded', function(event, data, previewId, index) {
+	        var form = data.form, files = data.files, extra = data.extra,
+	               response = data.response, reader = data.reader;
+	        console.log('File uploaded triggered');
+	    });
+	    
+	    $('#myModal').on('hide.bs.modal', function() {
+    		$('#fileupdateform')[0].reset();
+    	});
+	    
+	    $('#kpModal').on('hide.bs.modal', function() {
+	    	$('#fileupdatekpform')[0].reset();
+	    });
+		
+	</script>
+</body>
+</html>

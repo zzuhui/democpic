@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title th:text="${title}">title</title>
+
+<!-- Core CSS - Include with every page -->
+<link href="../../static/sb_admin/css/bootstrap.min.css" th:href="@{/sb_admin/css/bootstrap.min.css}"  rel="stylesheet"/>
+<link href="../../static/sb_admin/font-awesome/css/font-awesome.css" th:href="@{/sb_admin/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
+<!--标准mui.css-->
+<link rel="stylesheet" href="../../static/mui/css/mui.min.css" th:href="@{/mui/css/mui.min.css}" />
+<!-- Page-Level Plugin CSS - Dashboard -->
+<link href="../../static/sb_admin/css/plugins/morris/morris-0.4.3.min.css" th:href="@{/sb_admin/css/plugins/morris/morris-0.4.3.min.css}" rel="stylesheet"/>
+<link href="../../static/sb_admin/css/plugins/timeline/timeline.css" th:href="@{/sb_admin/css/plugins/timeline/timeline.css}" rel="stylesheet"/>
+<link href="../../static/sb_admin/css/sb-admin.css" th:href="@{/sb_admin/css/sb-admin.css}" rel="stylesheet"/>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+		<h1 class="mui-title">
+			<a class="date-a mui-icon mui-icon-left-nav" data-param="0"></a> <label
+				id="dailydatelabel" th:text="${dailydate}">2017-01-11</label> <a
+				class="date-a mui-icon mui-icon mui-icon-forward" data-param="1"></a>
+		</h1>
+	</header>
+	<div>
+          <ul class="timeline">
+			<li>
+				<div class="timeline-badge">
+					<i class="fa fa-check"></i>
+				</div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4 class="timeline-title">拜访张三</h4>
+						<p>
+							<small class="text-muted"><i class="fa fa-time"></i> 10:00:00 </small>
+						</p>
+					</div>
+					<div class="timeline-body">
+						<p>拜访了解客户的基本信息.</p>
+					</div>
+				</div>
+			</li>
+			<li class="timeline-inverted">
+				<div class="timeline-badge warning">
+					<i class="fa fa-credit-card"></i>
+				</div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4 class="timeline-title">开会总结</h4>
+					</div>
+					<div class="timeline-body">
+						<p>进行拜访的交流总结</p>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="timeline-badge danger">
+					<i class="fa fa-credit-card"></i>
+				</div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4 class="timeline-title">拜访客户李四</h4>
+						<p>
+							<small class="text-muted"><i class="fa fa-time"></i> 14:00:00 </small>
+						</p>
+					</div>
+					<div class="timeline-body">
+						<p>进一步了解李四关于投保XX产品事宜</p>
+					</div>
+				</div>
+			</li>
+			<li class="timeline-inverted">
+				<div class="timeline-badge danger">
+					<i class="fa fa-credit-card"></i>
+				</div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4 class="timeline-title">拜访客户王五</h4>
+						<p>
+							<small class="text-muted"><i class="fa fa-time"></i> 16:00:00 </small>
+						</p>
+					</div>
+					<div class="timeline-body">
+						<p>进一步了解王五关于投保XX产品事宜</p>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="timeline-badge danger">
+					<i class="fa fa-credit-card"></i>
+				</div>
+				<div class="timeline-panel">
+					<div class="timeline-heading">
+						<h4 class="timeline-title">每日拜访记录总结</h4>
+						<p>
+							<small class="text-muted"><i class="fa fa-time"></i> 17:00:00 </small>
+						</p>
+					</div>
+					<div class="timeline-body">
+						<p>补充今天拜访客户的信息</p>
+					</div>
+				</div>
+			</li>
+			
+		</ul>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	
+	<title th:text="${title}">title</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	
+	<!--标准mui.css-->
+	<link rel="stylesheet" href="../../static/mui/css/mui.min.css" th:href="@{/mui/css/mui.min.css}" />
+	
+	<!-- 	
+	<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css"
+		th:href="@{/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" href="../static/fileinput/css/fileinput.min.css"
+		th:href="@{/fileinput/css/fileinput.min.css}" />
+	 -->
+	
+</head>
+
+	<body>
+
+		<style>
+			.mui-control-content {
+				background-color: white;
+				min-height: 450px;
+			}
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
+			}
+			
+		</style>
+		<header class="mui-bar mui-bar-nav">
+			<!-- <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a> -->
+			<h1 class="mui-title">家庭卡信息维护</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item" href="#item1mobile">
+						基本信息
+					</a>
+					<a class="mui-control-item" href="#item2mobile">
+						家属亲友
+					</a>
+					<a class="mui-control-item" href="#item3mobile">
+						保单检视
+					</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<form class="mui-input-group">
+									<div class="mui-input-row">
+										<label>姓名</label>
+										<input type="text" class="mui-input-clear" placeholder="请输入姓名"/>
+									</div>
+									<div class="mui-input-row">
+										<label>性别</label>
+										<input type="text" class="mui-input-clear" placeholder="请输入性别"/>
+									</div>
+				
+									<div class="mui-input-row ">
+										<label>身份证号</label>
+										<input type="text" class="mui-input-clear" placeholder="请输入身份证号"/>
+									</div>
+									<div class="mui-input-row ">
+										<label>出身年月</label>
+										<input type="text" class="mui-input-clear" placeholder="请输入出身年月"/>
+									</div>
+									<div class="mui-input-row ">
+										<label>家庭地址</label>
+										<input type="text" class="mui-input-clear" placeholder="请输入家庭地址"/>
+									</div>
+									<div class="mui-input-row ">
+										<label>单位地址</label>
+										<input type="text" class="mui-input-clear" placeholder="请输入单位地址"/>
+									</div>
+									<div class="mui-input-row ">
+										<label>户籍地址</label>
+										<input type="text" class="mui-input-clear" placeholder="请输入户籍地址"/>
+									</div>
+									
+									<div class="mui-button-row">
+										<button type="button" class="mui-btn mui-btn-primary" onclick="return false;">确认</button>&nbsp;&nbsp;
+										<button type="button" class="mui-btn mui-btn-danger" onclick="return false;">取消</button>
+									</div>
+									
+								</form>
+								
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div id="scroll2" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-loading">
+									<div class="mui-spinner">
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div id="scroll3" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-loading">
+									<div class="mui-spinner">
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script src="../../static/mui/js/mui.min.js"	th:src="@{/mui/js/mui.min.js}"></script>
+
+		<script>
+			mui.init({
+				swipeBack: false
+			});
+			(function($) {
+				$('.mui-scroll-wrapper').scroll({
+					indicators: true //是否显示滚动条
+				});
+				var html2 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第二个选项卡子项-1</li><li class="mui-table-view-cell">第二个选项卡子项-2</li><li class="mui-table-view-cell">第二个选项卡子项-3</li><li class="mui-table-view-cell">第二个选项卡子项-4</li><li class="mui-table-view-cell">第二个选项卡子项-5</li></ul>';
+				var html3 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第三个选项卡子项-1</li><li class="mui-table-view-cell">第三个选项卡子项-2</li><li class="mui-table-view-cell">第三个选项卡子项-3</li><li class="mui-table-view-cell">第三个选项卡子项-4</li><li class="mui-table-view-cell">第三个选项卡子项-5</li></ul>';
+				var item2 = document.getElementById('item2mobile');
+				var item3 = document.getElementById('item3mobile');
+				document.getElementById('slider').addEventListener('slide', function(e) {
+					if (e.detail.slideNumber === 1) {
+						if (item2.querySelector('.mui-loading')) {
+							setTimeout(function() {
+								item2.querySelector('.mui-scroll').innerHTML = html2;
+							}, 500);
+						}
+					} else if (e.detail.slideNumber === 2) {
+						if (item3.querySelector('.mui-loading')) {
+							setTimeout(function() {
+								item3.querySelector('.mui-scroll').innerHTML = html3;
+							}, 500);
+						}
+					}
+				});				
+			})(mui);
+		</script>
+
+	</body>
+
+
+</html>
